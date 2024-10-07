@@ -113,53 +113,55 @@ export default function Transactions() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-5">
-        <div className="flex items-center font-semibold gap-3">
-          <h1 className="text-xl font-bold">Recent Transaction</h1>
+      <div className="grid grid-cols-1 lg:grid-cols-2 mb-5">
+        <div className="flex flex-col md:flex-row items-center font-semibold mdgap-3 mb-2 lg:mb-0 gap-2">
+          <h1 className="text-lg lg:text-xl font-bold">Recent Transaction</h1>
           <span className="text-sm text-gray-500 mt-1">
             {selectDate ? selectDate : date}
           </span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row justify-start lg:justify-end gap-2">
           <button
             onClick={() => filterDataByRange("12 months")}
-            className="border border-gray-300 px-3 py-2 text-sm rounded-md font-semibold"
+            className="w-fit sm:w-full mx-auto sm:mx-0 border border-gray-300 px-3 py-2 text-sm rounded-md font-semibold"
           >
             12 months
           </button>
           <button
             onClick={() => filterDataByRange("30 days")}
-            className="border border-gray-300 px-3 py-2 text-sm rounded-md font-semibold"
+            className="w-fit sm:w-full mx-auto sm:mx-0 border border-gray-300 px-3 py-2 text-sm rounded-md font-semibold"
           >
             30 days
           </button>
           <button
             onClick={() => filterDataByRange("7 days")}
-            className="border border-gray-300 px-3 py-2 text-sm rounded-md font-semibold"
+            className="w-fit sm:w-full mx-auto sm:mx-0 border border-gray-300 px-3 py-2 text-sm rounded-md font-semibold"
           >
             7 days
           </button>
           <button
             onClick={() => filterDataByRange("24 hours")}
-            className="border border-gray-300 px-3 py-2 text-sm rounded-md font-semibold"
+            className="w-fit sm:w-full mx-auto sm:mx-0 border border-gray-300 px-3 py-2 text-sm rounded-md font-semibold"
           >
             24 hours
           </button>
-          <label htmlFor="date" className="date-input-wrapper">
-            <input
-              id="date"
-              value={selectDate}
-              onChange={handleDateChange}
-              className="date outline-none"
-              type="date"
-              placeholder="Select dates"
-            />
-          </label>
+          <button>
+            <label htmlFor="date" className="date-input-wrapper">
+              <input
+                id="date"
+                value={selectDate}
+                onChange={handleDateChange}
+                className="date outline-none"
+                type="date"
+                placeholder="Select dates"
+              />
+            </label>
+          </button>
         </div>
       </div>
 
-      <div className="h-[552px] border border-gray-300 rounded-md">
-        <table className="transacion_table w-full">
+      <div className="h-[552px] overflow-x-scroll lg:overflow-x-hidden mb-3 overflow-y-hidden">
+        <table className="transacion_table min-w-[1050px] w-full border border-gray-300">
           <thead className="text-[12px] text-gray-500">
             <tr className="border-b border-gray-300">
               <th className="flex items-center gap-2">

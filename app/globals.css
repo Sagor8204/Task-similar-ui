@@ -5,9 +5,9 @@
 :root {
 }
 
-/* body {
-  font-family: "Roboto", sans-serif;
-} */
+body {
+  font-family: "Open Sans", sans-serif;
+}
 
 .transacion_table thead > tr th {
   font-weight: 700;
@@ -27,7 +27,7 @@
 /* Style the input date field */
 .date[type="date"] {
   text-align: right;
-  padding-left: 40px;
+  padding-left: 9px;
   padding-right: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -43,7 +43,7 @@
 .date[type="date"]::before {
   content: attr(placeholder);
   position: absolute;
-  left: 40px;
+  left: 38px;
   color: black;
   top: 50%;
   transform: translateY(-50%);

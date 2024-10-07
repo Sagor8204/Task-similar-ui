@@ -38,7 +38,7 @@ export default function Transaction({ data }) {
       </td>
       <td>
         <div>
-          <h3>{data.description}</h3>
+          <h3 className="font-medium">{data.description}</h3>
           <span className="text-purple-500 text-[12px]">{data.some}</span>
         </div>
       </td>
