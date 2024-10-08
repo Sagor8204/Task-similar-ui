@@ -23,24 +23,21 @@ const formatDate = (dateString) => {
   return `${year} ${monthNames[month - 1]} ${day}`;
 };
 
-export default function Transaction({ data, isAllChecked }) {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const hnadleChange = (e) => {
-    if (isAllChecked === true) {
-      setIsChecked(true);
-    } else if (isAllChecked === false) {
-      setIsChecked(false);
-    } else {
-      setIsChecked(e.target.value);
-    }
-  };
-
+export default function Transaction({
+  data,
+  selectedItems,
+  handleChange,
+  index,
+}) {
   return (
     <tr className="text-sm font-medium border-b border-gray-300">
       <td>
         <div className="flex gap-2">
-          <input type="checkbox" checked={isChecked} onChange={hnadleChange} />
+          <input
+            type="checkbox"
+            checked={selectedItems[index]}
+            onChange={() => handleChange(index)}
+          />
           <div>
             <h3>{formatDate(data.date)}</h3>
             <span className="text-[12px] text-gray-500">{data.deadline}</span>

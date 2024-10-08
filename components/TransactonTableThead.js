@@ -4,18 +4,14 @@ import { IoIosArrowRoundDown } from "react-icons/io";
 export default function TransactonTableThead({
   sortedData,
   sortedOrder,
-  setIsAllChecked,
-  isAllchecked,
+  selectAll,
+  handleChange,
 }) {
   return (
     <thead className="text-[12px] text-gray-500">
       <tr className="border-b border-gray-300">
         <th className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={isAllchecked}
-            onChange={() => setIsAllChecked(!isAllchecked)}
-          />
+          <input type="checkbox" checked={selectAll} onChange={handleChange} />
           <div
             onClick={sortedData}
             className="flex items-center cursor-pointer"

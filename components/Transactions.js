@@ -22,7 +22,6 @@ export default function Transactions() {
   const [transactionsData, setTransactionData] = useState(
     initialSortedDate || []
   );
-  const [isAllChecked, setIsAllChecked] = useState(false);
   const [currentPage, setCurrentpage] = useState(1);
   const [transactionPerPage] = useState(10);
   const [sortedOrder, setSortedOrder] = useState(true);
@@ -32,9 +31,10 @@ export default function Transactions() {
       new Date(new Date().setDate(new Date().getDate() - 365))
     )} - ${formatDate(new Date())})`
   );
-
-  // calculate the pages for pagination
-  const totalPages = Math.ceil(transactionsData.length / transactionPerPage);
+  const [selectedItems, setSelectedItems] = useState(
+    transactionsData.map(() => false)
+  );
+  const [selectAll, setSelectAll] = useState(false);
 
   // sorting functon
   const sortedData = () => {
@@ -113,8 +113,27 @@ export default function Transactions() {
   };
 
   // totalpages for paginatin and indexof first item and last item of transaction
+  const totalPages = Math.ceil(transactionsData.length / transactionPerPage);
   const indexOfLastTransaction = currentPage * transactionPerPage;
   const indexOfFirstTransaction = indexOfLastTransaction - transactionPerPage;
+
+  // handle individual checkbox change
+  const handleCheckboxChange = (index) => {
+    const updatedSelection = [...selectedItems];
+    updatedSelection[index] = !updatedSelection[index];
+    setSelectedItems(updatedSelection);
+
+    // update select all if all individual checkboxes are selected
+    const allSelected = updatedSelection.every((item) => item === true);
+    setSelectAll(allSelected);
+  };
+
+  // handle select all checkbox change
+  const handleSelectAllChange = () => {
+    const newSelectAllState = !selectAll;
+    setSelectAll(newSelectAllState);
+    setSelectedItems(transactionsData.map(() => newSelectAllState));
+  };
 
   return (
     <div>
@@ -130,8 +149,8 @@ export default function Transactions() {
           <TransactonTableThead
             sortedData={sortedData}
             sortedOrder={sortedOrder}
-            isAllChecked={isAllChecked}
-            setIsAllChecked={setIsAllChecked}
+            selectAll={selectAll}
+            handleChange={handleSelectAllChange}
           />
           <tbody className="relative">
             {transactionsData.length > 0 ? (
@@ -141,7 +160,9 @@ export default function Transactions() {
                   <Transaction
                     data={data}
                     key={index}
-                    isAllChecked={isAllChecked}
+                    selectedItems={selectedItems}
+                    handleChange={handleCheckboxChange}
+                    index={index}
                   />
                 ))
             ) : (
