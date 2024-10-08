@@ -3,7 +3,7 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 
 export default function Header() {
   return (
-    <div className="flex items-center justify-between py-2 max-w-[1500px] mx-auto px-3 lg:px-0">
+    <div className="flex items-center justify-between py-2 max-w-[1500px] mx-auto px-3 lg:px-2">
       <h1 className="text-[25px] md:text-[30px] lg:text-[40px] font-semibold">
         Banking
       </h1>

@@ -10,9 +10,9 @@ export default function Pagination({ pages, setCurrentPage }) {
     numOfPages.push(i);
   }
 
-  //   current Button state
+  // current Button state
   const [currentButton, setCurrentButton] = useState(1);
-  //   arr of buttons state
+  // arr of buttons state
   const [arrOfButtons, setArrOfButtons] = useState([]);
 
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function Pagination({ pages, setCurrentPage }) {
       setCurrentPage(1);
       setArrOfButtons(1);
     };
-  }, [currentButton]);
+  }, [currentButton, pages]);
 
   const prevButton = () => {
     setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1));

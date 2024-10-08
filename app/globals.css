@@ -76,3 +76,8 @@ body {
 .date[type="date"]::-webkit-datetime-edit {
   visibility: hidden;
 }
+
+.not_found {
+  left: 50%;
+  transform: translateX(-50%);
+}

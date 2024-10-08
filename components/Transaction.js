@@ -1,32 +1,46 @@
+"use client";
+import { useState } from "react";
 import { FaCheck } from "react-icons/fa6";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 
-export default function Transaction({ data }) {
-  const formatDate = (dateString) => {
-    const [day, month, year] = dateString.split("-").map(Number);
-    const monthNames = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ];
+const formatDate = (dateString) => {
+  const [day, month, year] = dateString.split("-").map(Number);
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
 
-    return `${year} ${monthNames[month - 1]} ${day}`;
+  return `${year} ${monthNames[month - 1]} ${day}`;
+};
+
+export default function Transaction({ data, isAllChecked }) {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const hnadleChange = (e) => {
+    if (isAllChecked === true) {
+      setIsChecked(true);
+    } else if (isAllChecked === false) {
+      setIsChecked(false);
+    } else {
+      setIsChecked(e.target.value);
+    }
   };
 
   return (
     <tr className="text-sm font-medium border-b border-gray-300">
       <td>
         <div className="flex gap-2">
-          <input type="checkbox" />
+          <input type="checkbox" checked={isChecked} onChange={hnadleChange} />
           <div>
             <h3>{formatDate(data.date)}</h3>
             <span className="text-[12px] text-gray-500">{data.deadline}</span>
